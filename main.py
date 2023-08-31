@@ -204,4 +204,7 @@ for j in range(2, 5):
         btn[i]["command"] = lambda x=numberpad[i]: added_value.numberEnter(x)
         i += 1
 
+btnClear = Button(calc, text=chr(67), width=6, height=2, bg="powder blue", font=('Helvetica', 20, 'bold'), bd=4,
+                  command=added_value.clear_entry).grid(row=1, column=0, pady=1)
+
 root.mainloop()
