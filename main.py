@@ -204,7 +204,45 @@ for j in range(2, 5):
         btn[i]["command"] = lambda x=numberpad[i]: added_value.numberEnter(x)
         i += 1
 
-btnClear = Button(calc, text=chr(67), width=6, height=2, bg="powder blue", font=('Helvetica', 20, 'bold'), bd=4,
-                  command=added_value.clear_entry).grid(row=1, column=0, pady=1)
+
+def button_generator(txt, comd, bg="powder blue", fg="black"):
+    return Button(calc, text=txt, width=6, height=2, bg=bg, fg=fg, font=('Helvetica', 20, 'bold'), bd=4,
+                  command=comd)
+
+
+button_generator(chr(67), added_value.clear_entry).grid(row=1, column=0, pady=1)
+button_generator(chr(67)+chr(69), added_value.all_clear_entry).grid(row=1, column=1, pady=1)
+button_generator("\u221A", added_value.squared).grid(row=1, column=2, pady=1)
+button_generator("+", lambda: added_value.operation("add")).grid(row=1, column=3, pady=1)
+button_generator("-", lambda: added_value.operation("sub")).grid(row=2, column=3, pady=1)
+button_generator("x", lambda: added_value.operation("multi")).grid(row=3, column=3, pady=1)
+button_generator("/", lambda: added_value.operation("divide")).grid(row=4, column=3, pady=1)
+button_generator(txt="0", bg="black", fg="white", comd=lambda: added_value.numberEnter(0)).grid(row=5, column=0, pady=1)
+button_generator(".", lambda: added_value.numberEnter(".")).grid(row=5, column=1, pady=1)
+button_generator(chr(177), added_value.mathPM).grid(row=5, column=2, pady=1)
+button_generator("=", added_value.sum_of_total).grid(row=5, column=3, pady=1)
+button_generator("pi", added_value.pi, "black", "white").grid(row=1, column=4, pady=1)
+button_generator("cos", added_value.cos, "black", "white").grid(row=1, column=5, pady=1)
+button_generator("tan", added_value.tan, "black", "white").grid(row=1, column=6, pady=1)
+button_generator("sin", added_value.sin, "black", "white").grid(row=1, column=7, pady=1)
+button_generator("2pi", added_value.tau, "black", "white").grid(row=2, column=4, pady=1)
+button_generator("Cosh", added_value.cosh, "black", "white").grid(row=2, column=5, pady=1)
+button_generator("tanh", added_value.tanh, "black", "white").grid(row=2, column=6, pady=1)
+button_generator("sinh", added_value.sinh, "black", "white").grid(row=2, column=7, pady=1)
+button_generator("log", added_value.log, "black", "white").grid(row=3, column=4, pady=1)
+button_generator("exp", added_value.exp, "black", "white").grid(row=3, column=5, pady=1)
+button_generator("Mod", lambda: added_value.operation("mod"), "black", "white").grid(row=3, column=6, pady=1)
+button_generator("e", added_value.e, "black", "white").grid(row=3, column=7, pady=1)
+button_generator("log10", added_value.log10, "black", "white").grid(row=4, column=4, pady=1)
+button_generator("log1p", added_value.log1p, "black", "white").grid(row=4, column=5, pady=1)
+button_generator("expm1", added_value.expm1, "black", "white").grid(row=4, column=6, pady=1)
+button_generator("gamma", added_value.lgamma, "black", "white").grid(row=4, column=7, pady=1)
+button_generator("log2", added_value.log2, "black", "white").grid(row=5, column=4, pady=1)
+button_generator("deg", added_value.degrees, "black", "white").grid(row=5, column=5, pady=1)
+button_generator("acosh", added_value.acosh, "black", "white").grid(row=5, column=6, pady=1)
+button_generator("asinh", added_value.asinh, "black", "white").grid(row=5, column=7, pady=1)
+
+Label(calc, text="Scientific Calculator", font=("Helvetica", 30, "bold"), bg="black", fg="white", justify=CENTER)\
+    .grid(row=0, column=4, columnspan=4)
 
 root.mainloop()
