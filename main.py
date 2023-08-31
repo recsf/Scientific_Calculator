@@ -211,7 +211,7 @@ def button_generator(txt, comd, bg="powder blue", fg="black"):
 
 
 button_generator(chr(67), added_value.clear_entry).grid(row=1, column=0, pady=1)
-button_generator(chr(67)+chr(69), added_value.all_clear_entry).grid(row=1, column=1, pady=1)
+button_generator(chr(67) + chr(69), added_value.all_clear_entry).grid(row=1, column=1, pady=1)
 button_generator("\u221A", added_value.squared).grid(row=1, column=2, pady=1)
 button_generator("+", lambda: added_value.operation("add")).grid(row=1, column=3, pady=1)
 button_generator("-", lambda: added_value.operation("sub")).grid(row=2, column=3, pady=1)
@@ -242,7 +242,36 @@ button_generator("deg", added_value.degrees, "black", "white").grid(row=5, colum
 button_generator("acosh", added_value.acosh, "black", "white").grid(row=5, column=6, pady=1)
 button_generator("asinh", added_value.asinh, "black", "white").grid(row=5, column=7, pady=1)
 
-Label(calc, text="Scientific Calculator", font=("Helvetica", 30, "bold"), bg="black", fg="white", justify=CENTER)\
+Label(calc, text="Scientific Calculator", font=("Helvetica", 30, "bold"), bg="black", fg="white", justify=CENTER) \
     .grid(row=0, column=4, columnspan=4)
 
+
+def iExit():
+    iExit = tkinter.messagebox.askyesno("Scientific Calculator", "Do you want to exit?")
+    if iExit > 0:
+        root.destroy()
+        return
+
+
+def scientific():
+    root.resizable(width=False, height=False)
+    root.geometry("944x588+0+0")
+
+
+def standard():
+    root.resizable(width=False, height=False)
+    root.geometry("480x568+0+0")
+
+
+menuBar = Menu(calc)
+
+# Menu 1
+filemenu = Menu(menuBar, tearoff=0)
+menuBar.add_cascade(label="File", menu=filemenu)
+filemenu.add_command(label="Standard", command=standard)
+filemenu.add_command(label="Scientific", command=scientific)
+filemenu.add_separator()
+filemenu.add_command(label="Exit", command=iExit)
+
+root.config(menu=menuBar)
 root.mainloop()
